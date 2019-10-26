@@ -1,3 +1,46 @@
+<#
+.SYNOPSIS
+RetroArch-Administration: a set of scripts that aim to make RetroArch administration a little easier.
+
+.DESCRIPTION
+DOT LOAD this file, and then the functions will be available for use.
+
+*Update-RetroArch: determines the newest stable release from Github, downloads it from Libretro's buildbot,
+and then upgrades your existing installation, preserving a select set of directories (such as savestates and firmware) and files.
+Your existing installation will be preserved as-is in a separate -LKG directory.
+
+*Update-RetroArchCores: fetches the latest libretro cores, only updating what you already have installed. To install additional
+cores, do so within RetroArch's online updater - afterwards, they'll be tracked by this script and updated.
+
+*New-RetroArchConfiguration: parses and compares your running configuration to a current set of default settings to determine
+what has been added, removed, or is set differently versus the current defaults. Capable of generating both an "overrides" file,
+which contains only the settings that differ versus the default value, as well as generating a brand new configuration with your
+preferences intact.
+
+.PARAMETER RetroArchPath
+Defines the path where RetroArch is installed, for example, C:\RetroArch.
+
+.PARAMETER CheckVersionOnly
+Instructs the script to only check the version available on Github, not replace the local running copy.
+
+.PARAMETER DefaultConfigFile
+Evaluates defaults contained in a file, instead of running retroarch.exe to generate them. Optional.
+
+.PARAMETER GenerateOverrides
+After parsing the running configuration versus the current default settings, writes all deltas to a separate file.
+
+.PARAMETER CommitConfig
+Backs up the current running configuration and generates a new one with current settings, plus your overrides.
+
+.EXAMPLE
+Update-RetroArch -RetroArchPath 'C:\RetroArch'
+Update-RetroArchCores -RetroArchPath 'C:\RetroArch'
+New-RetroArchConfiguration -RetroArchPath 'C:\RetroArch' -GenerateOverrides
+
+.NOTES
+This has only been tested on Windows and will need some modifications to work on other platforms.
+#>
+
 Function Update-RetroArch {
     param (
         [Parameter(Mandatory = $true)] [String]$RetroArchPath,
