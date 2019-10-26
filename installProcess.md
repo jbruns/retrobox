@@ -2,7 +2,6 @@
     -If you want to hide more of the Windows UX and make the machine look/feel more like a console, you'll need an Enterprise or LTSC SKU
 *Take the latest cumulative and security updates.
 *If the machine is to belong to a domain, join the domain.
-*Enable remote desktop.
 *Create a C:\build directory and copy all of the files from this repository's build directory to it.
     -Also, add:
         -LaunchBox installer
@@ -19,7 +18,6 @@
         -Zadig
 *Install necessary drivers for your hardware. Usually a conservative approach is best, to reduce the number of processes spawned on boot or services running in the background.
     -I only install NVIDIA drivers (without GeForce Experience).
-*Make sure the display is set to 60hz.
 *TODO: Group Policy
 *In an elevated PowerShell session, run RetroBox-InitialSetup.ps1.
     -[Enterprise SKUs] Set BCD "bootuxdisabled"
